@@ -100,18 +100,6 @@ map <silent> <F11> :call ToggleFullscreen()<CR> "fullscreen switch
 autocmd VimEnter * call ToggleFullscreen() "enter fullscreen while startup
 
 set completeopt=longest,menu
-"autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-"inoremap <expr> <CR>  pumvisible()?"\<C-y>":"\<CR>"
-
-"inoremap <expr> <Down>     pumvisible()?"\<C-n>":"\<Down>"
-"inoremap <expr> <Up>       pumvisible()?"\<C-p>":"\<Up>"
-"inoremap <expr> <PageDown> pumvisible()?"\<PageDown>\<C-p>\<C-n>":"\<PageDown>"
-"inoremap <expr> <PageUp>   pumvisible()?"\<PageUp>\<C-p>\<C-n>":"\<PageUp>"
-
-let g:ycm_key_list_select_completion=['<c-n>']
-let g:ycm_key_list_select_completion = ['<Down>']
-let g:ycm_key_list_previous_completion=['<c-p>']
-let g:ycm_key_list_previous_completion = ['<Up>']
 
 nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
