@@ -101,6 +101,7 @@ autocmd VimEnter * call ToggleFullscreen() "enter fullscreen while startup
 
 set completeopt=longest,menu
 
+
 nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
@@ -131,6 +132,12 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let NERDSpaceDelims = 1
 
 set hidden
+
+nmap <silent> <A-Up> :wincmd k<CR>
+nmap <silent> <A-Down> :wincmd j<CR>
+nmap <silent> <A-Left> :wincmd h<CR>
+nmap <silent> <A-Right> :wincmd l<CR>
+
 "let g:racer_cmd = "/home/xiaoxi/.cargo/bin/racer"
 "let $RUST_SRC_PATH="/home/xiaoxi/Source/rust/src"
 
