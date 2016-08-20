@@ -120,7 +120,14 @@ let g:ycm_collect_identifiers_from_comments_add_strings=1
 
 let g:ycm_confirm_extra_conf=0
 let g:ycm_key_invoke_completion='<C-a>'
-let g:ycm_rust_src_path='/home/xiaoxi/Source/rust/src'
+if has("mac")
+    let g:ycm_rust_src_path='/Users/xiaoxi/Source/rust/src'
+elseif has("unix")
+    let g:ycm_rust_src_path='/home/xiaoxi/Source/rust/src'
+else
+    let g:ycm_rust_src_path='E:/Source/rust/src'
+endif
+
 "let g:ycm_rust_racer_path='/home/xiaoxi/.cargo/bin/racer'
 
 "ultisnips
