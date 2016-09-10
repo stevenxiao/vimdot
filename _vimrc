@@ -8,6 +8,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'L9'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'rust-lang/rust.vim'
+Plugin 'phildawes/racer'
 Plugin 'fatih/vim-go'
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
@@ -33,7 +34,8 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'godlygeek/tabular'
 Plugin 'hdima/python-syntax'
 Plugin 'vim-scripts/TaskList.vim' "TODO List
-Plugin 'artur-shaik/vim-javacomplete2'
+"Plugin 'artur-shaik/vim-javacomplete2'
+Plugin 'vim-scripts/javacomplete'
 call vundle#end()
 
 filetype plugin indent on
@@ -140,10 +142,20 @@ let NERDSpaceDelims = 1
 
 set hidden
 
-nmap <silent> <C-Up> :wincmd k<CR>
-nmap <silent> <C-Down> :wincmd j<CR>
-nmap <silent> <C-Left> :wincmd h<CR>
-nmap <silent> <C-Right> :wincmd l<CR>
+set guifont=Monaco:h16
+
+
+if has("mac")
+    nmap <silent> <A-UP> :wincmd k<CR>
+    nmap <silent> <A-Down> :wincmd j<CR>
+    nmap <silent> <A-Left> :wincmd h<CR>
+    nmap <silent> <A-Right> :wincmd l<CR>
+else
+    nmap <silent> <C-Up> :wincmd k<CR>
+    nmap <silent> <C-Down> :wincmd j<CR>
+    nmap <silent> <C-Left> :wincmd h<CR>
+    nmap <silent> <C-Right> :wincmd l<CR>
+endif
 
 "let g:racer_cmd = "/home/xiaoxi/.cargo/bin/racer"
 "let $RUST_SRC_PATH="/home/xiaoxi/Source/rust/src"
@@ -294,29 +306,34 @@ let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 
 
 "vim-javacomplete2
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
+"autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
-au FileType java nmap <leader>jI <Plug>(JavaComplete-Imports-AddMissing)
-au FileType java nmap <leader>jR <Plug>(JavaComplete-Imports-RemoveUnused)
-au FileType java nmap <leaDer>ji <Plug>(JavaComplete-Imports-AddSmart)
-au FileType java nmap <leader>jii <Plug>(JavaComplete-Imports-Add)
-au FileType java imap <C-j>I <Plug>(JavaComplete-Imports-AddMissing)
-au FileType java imap <C-j>R <Plug>(JavaComplete-Imports-RemoveUnused)
-au FileType java imap <C-j>i <Plug>(JavaComplete-Imports-AddSmart)
-au FileType java imap <C-j>ii <Plug>(JavaComplete-Imports-Add)
-au FileType java nmap <leader>jM <Plug>(JavaComplete-Generate-AbstractMethods)
-au FileType java imap <C-j>jM <Plug>(JavaComplete-Generate-AbstractMethods)
-au FileType java nmap <leader>jA <Plug>(JavaComplete-Generate-Accessors)
-au FileType java nmap <leader>js <Plug>(JavaComplete-Generate-AccessorSetter)
-au FileType java nmap <leader>jg <Plug>(JavaComplete-Generate-AccessorGetter)
-au FileType java nmap <leader>ja <Plug>(JavaComplete-Generate-AccessorSetterGetter)
-au FileType java nmap <leader>jts <Plug>(JavaComplete-Generate-ToString)
-au FileType java nmap <leader>jeq <Plug>(JavaComplete-Generate-EqualsAndHashCode)
-au FileType java nmap <leader>jc <Plug>(JavaComplete-Generate-Constructor)
-au FileType java nmap <leader>jcc <Plug>(JavaComplete-Generate-DefaultConstructor)
-au FileType java imap <C-j>s <Plug>(JavaComplete-Generate-AccessorSetter)
-au FileType java imap <C-j>g <Plug>(JavaComplete-Generate-AccessorGetter)
-au FileType java imap <C-j>a <Plug>(JavaComplete-Generate-AccessorSetterGetter)
-au FileType java vmap <leader>js <Plug>(JavaComplete-Generate-AccessorSetter)
-au FileType java vmap <leader>jg <Plug>(JavaComplete-Generate-AccessorGetter)
-au FileType java vmap <leader>ja <Plug>(JavaComplete-Generate-AccessorSetterGetter)
+"au FileType java nmap <leader>jI <Plug>(JavaComplete-Imports-AddMissing)
+"au FileType java nmap <leader>jR <Plug>(JavaComplete-Imports-RemoveUnused)
+"au FileType java nmap <leaDer>ji <Plug>(JavaComplete-Imports-AddSmart)
+"au FileType java nmap <leader>jii <Plug>(JavaComplete-Imports-Add)
+"au FileType java imap <C-j>I <Plug>(JavaComplete-Imports-AddMissing)
+"au FileType java imap <C-j>R <Plug>(JavaComplete-Imports-RemoveUnused)
+"au FileType java imap <C-j>i <Plug>(JavaComplete-Imports-AddSmart)
+"au FileType java imap <C-j>ii <Plug>(JavaComplete-Imports-Add)
+"au FileType java nmap <leader>jM <Plug>(JavaComplete-Generate-AbstractMethods)
+"au FileType java imap <C-j>jM <Plug>(JavaComplete-Generate-AbstractMethods)
+"au FileType java nmap <leader>jA <Plug>(JavaComplete-Generate-Accessors)
+"au FileType java nmap <leader>js <Plug>(JavaComplete-Generate-AccessorSetter)
+"au FileType java nmap <leader>jg <Plug>(JavaComplete-Generate-AccessorGetter)
+"au FileType java nmap <leader>ja <Plug>(JavaComplete-Generate-AccessorSetterGetter)
+"au FileType java nmap <leader>jts <Plug>(JavaComplete-Generate-ToString)
+"au FileType java nmap <leader>jeq <Plug>(JavaComplete-Generate-EqualsAndHashCode)
+"au FileType java nmap <leader>jc <Plug>(JavaComplete-Generate-Constructor)
+"au FileType java nmap <leader>jcc <Plug>(JavaComplete-Generate-DefaultConstructor)
+"au FileType java imap <C-j>s <Plug>(JavaComplete-Generate-AccessorSetter)
+"au FileType java imap <C-j>g <Plug>(JavaComplete-Generate-AccessorGetter)
+"au FileType java imap <C-j>a <Plug>(JavaComplete-Generate-AccessorSetterGetter)
+"au FileType java vmap <leader>js <Plug>(JavaComplete-Generate-AccessorSetter)
+"au FileType java vmap <leader>jg <Plug>(JavaComplete-Generate-AccessorGetter)
+"au FileType java vmap <leader>ja <Plug>(JavaComplete-Generate-AccessorSetterGetter)
+"
+if has("autocmd")
+    autocmd FileType java setlocal omnifunc=javacomplete#Complete 
+endif
+
