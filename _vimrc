@@ -35,7 +35,10 @@ Plugin 'godlygeek/tabular'
 Plugin 'hdima/python-syntax'
 Plugin 'vim-scripts/TaskList.vim' "TODO List
 "Plugin 'artur-shaik/vim-javacomplete2'
-Plugin 'vim-scripts/javacomplete'
+"Plugin 'vim-scripts/javacomplete'
+Plugin 'rhysd/vim-clang-format'
+Plugin 'kana/vim-operator-user'
+
 call vundle#end()
 
 filetype plugin indent on
@@ -107,7 +110,7 @@ nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
 
-"let g:EclimCompletionMethod = 'omnifunc'
+let g:EclimCompletionMethod = 'omnifunc'
 let g:ycm_collect_identifiers_from_tag_fles=1
 let g:ycm_min_num_of_chars_for_completion=2
 let g:ycm_cache_omnifunc=0
@@ -129,6 +132,8 @@ elseif has("unix")
 else
     let g:ycm_rust_src_path='E:/Source/rust/src'
 endif
+
+autocmd FileType c,cpp,objc ClangFormatAutoEnable
 
 "let g:ycm_rust_racer_path='/home/xiaoxi/.cargo/bin/racer'
 
@@ -303,37 +308,4 @@ let g:go_fmt_fail_silently = 1
 
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
-
-
-"vim-javacomplete2
-"autocmd FileType java setlocal omnifunc=javacomplete#Complete
-
-"au FileType java nmap <leader>jI <Plug>(JavaComplete-Imports-AddMissing)
-"au FileType java nmap <leader>jR <Plug>(JavaComplete-Imports-RemoveUnused)
-"au FileType java nmap <leaDer>ji <Plug>(JavaComplete-Imports-AddSmart)
-"au FileType java nmap <leader>jii <Plug>(JavaComplete-Imports-Add)
-"au FileType java imap <C-j>I <Plug>(JavaComplete-Imports-AddMissing)
-"au FileType java imap <C-j>R <Plug>(JavaComplete-Imports-RemoveUnused)
-"au FileType java imap <C-j>i <Plug>(JavaComplete-Imports-AddSmart)
-"au FileType java imap <C-j>ii <Plug>(JavaComplete-Imports-Add)
-"au FileType java nmap <leader>jM <Plug>(JavaComplete-Generate-AbstractMethods)
-"au FileType java imap <C-j>jM <Plug>(JavaComplete-Generate-AbstractMethods)
-"au FileType java nmap <leader>jA <Plug>(JavaComplete-Generate-Accessors)
-"au FileType java nmap <leader>js <Plug>(JavaComplete-Generate-AccessorSetter)
-"au FileType java nmap <leader>jg <Plug>(JavaComplete-Generate-AccessorGetter)
-"au FileType java nmap <leader>ja <Plug>(JavaComplete-Generate-AccessorSetterGetter)
-"au FileType java nmap <leader>jts <Plug>(JavaComplete-Generate-ToString)
-"au FileType java nmap <leader>jeq <Plug>(JavaComplete-Generate-EqualsAndHashCode)
-"au FileType java nmap <leader>jc <Plug>(JavaComplete-Generate-Constructor)
-"au FileType java nmap <leader>jcc <Plug>(JavaComplete-Generate-DefaultConstructor)
-"au FileType java imap <C-j>s <Plug>(JavaComplete-Generate-AccessorSetter)
-"au FileType java imap <C-j>g <Plug>(JavaComplete-Generate-AccessorGetter)
-"au FileType java imap <C-j>a <Plug>(JavaComplete-Generate-AccessorSetterGetter)
-"au FileType java vmap <leader>js <Plug>(JavaComplete-Generate-AccessorSetter)
-"au FileType java vmap <leader>jg <Plug>(JavaComplete-Generate-AccessorGetter)
-"au FileType java vmap <leader>ja <Plug>(JavaComplete-Generate-AccessorSetterGetter)
-"
-if has("autocmd")
-    autocmd FileType java setlocal omnifunc=javacomplete#Complete 
-endif
 
