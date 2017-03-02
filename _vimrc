@@ -6,6 +6,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'L9'
+Plugin 'ervandew/supertab'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'rust-lang/rust.vim'
 Plugin 'phildawes/racer'
@@ -81,6 +82,8 @@ let g:rehash256 = 1
 let g:molokai_original = 1
 let g:solarized_termcolors=256
 set gcr=a:block-blinkon0
+
+let g:SuperTabDefaultCompletionType = "<c-n>"
 
 "multiple file operation
 let g:miniBufExplMapWindowNavVim=1
