@@ -71,7 +71,12 @@ set cursorline
 set hlsearch
 
 if has("gui_running")
-	set background=light
+    set guioptions-=m
+    set guioptions-=T
+    set guioptions-=r
+    set guioptions-=L
+    set guifont=Source_Code_Pro:h14
+	set background=dark
     colorscheme solarized
 else
 	set background=dark
@@ -99,12 +104,12 @@ map <S-Tab> :MBEbn<CR>
 map <C-S-Tab> :MBEbp<CR>
 
 
-fun! ToggleFullscreen()
-    call system("wmctrl -ir" . v:windowid . "-b toggle,fullscreen")
-endfunc
+"fun! ToggleFullscreen()
+""    call system("wmctrl -ir" . v:windowid . "-b toggle,fullscreen")
+"endfunc
 
-map <silent> <F11> :call ToggleFullscreen()<CR> "fullscreen switch
-autocmd VimEnter * call ToggleFullscreen() "enter fullscreen while startup
+"map <silent> <F11> :call ToggleFullscreen()<CR> "fullscreen switch
+"autocmd VimEnter * call ToggleFullscreen() "enter fullscreen while startup
 
 set completeopt=longest,menu
 
@@ -113,7 +118,7 @@ nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
 
-let g:EclimCompletionMethod = 'omnifunc'
+"let g:EclimCompletionMethod = 'omnifunc'
 let g:ycm_collect_identifiers_from_tag_fles=1
 let g:ycm_min_num_of_chars_for_completion=2
 let g:ycm_cache_omnifunc=0
@@ -191,7 +196,18 @@ let Tlist_File_Fold_Auto_Close = 1
 ""powerline
 set laststatus=2
 set t_Co=256   
-set encoding=utf-8  
+set encoding=utf-8
+set fileencodings=utf-8,chinese,latin-l
+if has("win32")
+    set fileencoding=chinese
+else
+    set fileencoding=utf-8
+endif
+language messages zh_CN.utf-8
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim
+
+
 "set fillchars+=stl:\ ,stlnc:\
 let g:Powerline_colorscheme="solarized256"
 
